@@ -1,0 +1,151 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tile/Starter_Level.tmx",
+    "expandedProjectPaths": [
+    ],
+    "exportAsImage.includeBackgroundColor": true,
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 1.tmx": {
+            "scale": 1.3544921875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 511.6308579668349,
+                "y": 288.2999279019466
+            }
+        },
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 2.tmx": {
+            "scale": 1.3544921875,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 401.6265320836338,
+                "y": 406.4253785147801
+            }
+        },
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 3.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1.3544921875,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 477.66979091564525,
+                "y": 246.95602018745495
+            }
+        },
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/tilesets/Decorations.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1.5
+        },
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/tilesets/Main.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1.5
+        },
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/tilesets/Misc.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1.5
+        },
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/Idle.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Decorations (32x32).tsx": {
+            "scaleInDock": 2
+        },
+        "Idle.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Starter_Level.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 468.66666666666663,
+                "y": 421.66666666666663
+            }
+        },
+        "Terrain (32x32).tsx": {
+            "scaleInDock": 2
+        },
+        "Terrain (64x64).tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "Torch.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 4,
+            "scaleInEditor": 1
+        },
+        "box.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "collision.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "door.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
+        },
+        "tile/Decorations (32x32).tsx": {
+            "scaleInDock": 1
+        },
+        "tile/Starter_Level.tmx": {
+            "scale": 0.8197048611111111,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 512.3795404002965,
+                "y": 461.7515620036006
+            }
+        },
+        "tile/Terrain (32x32).tsx": {
+            "scaleInDock": 1
+        },
+        "tile/box.tsx": {
+            "scaleInDock": 1
+        },
+        "tile/collision.tsx": {
+            "scaleInDock": 1
+        },
+        "tile/door.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "last.externalTilesetPath": "D:/Coding/react-jam-2024/react-jam-2024/src/assets/map",
+    "last.imagePath": "D:/Coding/react-jam-2024/react-jam-2024/src/assets",
+    "map.height": 18,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 32,
+    "openFiles": [
+        "tile/Starter_Level.tmx"
+    ],
+    "project": "Starter_Level.tiled-project",
+    "recentFiles": [
+        "tile/Starter_Level.tmx",
+        "Starter_Level.tmx",
+        "door.tsx",
+        "box.tsx",
+        "collision.tsx",
+        "Idle.tsx",
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/Idle.tsx",
+        "Torch.tsx",
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 3.tmx",
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 2.tmx",
+        "Terrain (64x64).tsx",
+        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 1.tmx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 32
+    }
+}
