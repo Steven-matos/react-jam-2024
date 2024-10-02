@@ -19,7 +19,12 @@ export default function Sprite(
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    const image = new Image()
+    const image = new Image();
+    let loaded = false;
+
+    image.onload = () => {
+      loaded = true;
+    }
 
     // Set canvas dimensions
     canvas.width = 1024;
@@ -36,7 +41,13 @@ export default function Sprite(
       //context.fillRect(position.x, position.y, 200, 200);
 
       image.src = imageSrc;
-      context.drawImage(image, position.x, position.y)
+      
+      if (loaded) {
+        context.drawImage(image, position.x, position.y)
+      } else {
+        return
+      }
+
     }
 
     animate();

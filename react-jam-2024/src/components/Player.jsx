@@ -28,7 +28,8 @@ export default function Player(
         preventInput = false,
         direction = 'right',
         jumps = 0,
-        jumpCount = 1
+        jumpCount = 1,
+        collisionBlocks = [],
     }
 ) {
     const canvasRef = useRef(null);
@@ -40,6 +41,16 @@ export default function Player(
         // Set canvas dimensions
         canvas.width = 1024;
         canvas.height = 576;
+
+        //Hitbox Dimensions
+        let hitbox = {
+            position: {
+                x: position.x,
+                y: position.y
+            },
+            width: 40,
+            height: 53
+        }
 
         const keys = {
             w: {
@@ -131,7 +142,7 @@ export default function Player(
         function animate() {
             window.requestAnimationFrame(animate);
             velocity.x = 0;
-            
+
             render();
             handleInput(keys);
             update();
@@ -146,24 +157,101 @@ export default function Player(
             context.fillRect(position.x, position.y, width, height);
         }
 
+        function checkForHorizontalCollisions() {
+            for (let i = 0; i < collisionBlocks.length; i++) {
+                const collisionBlock = collisionBlocks[i];
+
+                //If a collision exists
+                if (
+                    hitbox.position.x <= collisionBlock.position.x + collisionBlock.width &&
+                    hitbox.position.x + hitbox.width >= collisionBlock.position.x &&
+                    hitbox.position.y + hitbox.height >= collisionBlock.position.y &&
+                    hitbox.position.y <= collisionBlock.position.y + collisionBlock.height
+                ) {
+                    //Collision on x axis going to the left
+                    if (velocity.x < 0) {
+                        const offset = hitbox.position.x - position.x;
+                        position.x = collisionBlock.position.x + collisionBlock.width - offset + 0.01;
+                        jumps--;
+                        break
+                    }
+
+                    //Collision on x axis going to the right
+                    if (velocity.x > 0) {
+                        const offset = hitbox.position.x - position.x + hitbox.width;
+                        position.x = collisionBlock.position.x - offset - 0.01;
+                        jumps--;
+                        break
+                    }
+                }
+            }
+        }
+
+        function applyGravity() {
+            velocity.y += gravity;
+            position.y += velocity.y;
+        }
+
+        function updateHitbox() {
+            hitbox = {
+                position: {
+                    x: position.x,
+                    y: position.y
+                },
+                width: 40,
+                height: 53
+            }
+        }
+
+        function checkforVerticalCollisions() {
+            for (let i = 0; i < collisionBlocks.length; i++) {
+                const collisionBlock = collisionBlocks[i];
+
+                //If a collision exists
+                if (
+                    hitbox.position.x <= collisionBlock.position.x + collisionBlock.width &&
+                    hitbox.position.x + hitbox.width >= collisionBlock.position.x &&
+                    hitbox.position.y + hitbox.height >= collisionBlock.position.y &&
+                    hitbox.position.y <= collisionBlock.position.y + collisionBlock.height
+                ) {
+                    //Collision on y axis going up
+                    if (velocity.y < 0) {
+                        velocity.y = 0;
+                        const offset = hitbox.position.y - position.y;
+                        position.y = collisionBlock.position.y + collisionBlock.height - offset + 0.01;
+                        break
+                    }
+
+                    //Collision on y axis going down
+                    if (velocity.y > 0) {
+                        velocity.y = 0;
+                        const offset = hitbox.position.y - position.y + hitbox.height;
+                        position.y = collisionBlock.position.y - offset - 0.01;
+                        jumps = 0;
+                        break
+                    }
+                }
+            }
+        }
+
+
+
         function update() {
             position.x += velocity.x;
-            position.y += velocity.y;
-            sides.bottom = position.y + height;
 
-            //Above bottom of canvas
-            if (sides.bottom + velocity.y < canvas.height) {
-                velocity.y += gravity;
-            } else {
-                velocity.y = 0;
-                jumps = 0;
-            }
+            updateHitbox();
+            context.fillStyle = 'rgba(0, 255, 0, .5)';
+            context.fillRect(hitbox.position.x, hitbox.position.y, hitbox.width, hitbox.height)
+            checkForHorizontalCollisions();
+            applyGravity();
+            updateHitbox();
+            checkforVerticalCollisions();
         }
 
         animate();
 
 
-    }, [position, width, height, color, style, sides, velocity, gravity, preventInput, direction, jumps, jumpCount]); // Re-render when props change
+    }, [position, width, height, color, style, sides, velocity, gravity, preventInput, direction, jumps, jumpCount, collisionBlocks]); // Re-render when props change
 
     return (
         <div style={style}>
