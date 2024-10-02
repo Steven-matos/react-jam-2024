@@ -2,27 +2,30 @@
 import { useRef, useEffect } from 'react';
 
 export default function Sprite(
-    { 
-    position = {
-        x: 0, 
-        y: 0
-    }, 
-    width = 150, 
-    height = 150, 
-    color = 'red', 
-    style, 
-    sides  = {
-        bottom: position.y + 100,
-        top: 100,
-        left: 100,
-        right: 100
-    },
-    velocity = {
-        x: 0,
-        y: 0
-    },
-    gravity = .03
-}
+    {
+        position = {
+            x: 0,
+            y: 0
+        },
+        width = 64,
+        height = 64,
+        color = 'red',
+        style = {
+            position: 'absolute',
+            zIndex: '1'
+        },
+        sides = {
+            bottom: position.y + 100,
+            top: 100,
+            left: 100,
+            right: 100
+        },
+        velocity = {
+            x: 0,
+            y: 0
+        },
+        gravity = .03
+    }
 ) {
     const canvasRef = useRef(null);
 

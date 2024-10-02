@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Canvas style={{ position: 'absolute', zIndex: '-1' }} />
-      <Sprite position={{x:150, y:150}} style={{ position: 'absolute', zIndex: '1' }} />
+      <Sprite position={{x:150, y:50}} style={{ position: 'absolute', zIndex: '1' }} />
     </div>
   )
 }
