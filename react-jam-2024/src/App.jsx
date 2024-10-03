@@ -4,6 +4,8 @@ import Player from './components/Player.jsx';
 import Sprite from './components/Sprite.jsx';
 import level1 from './assets/background/backgroundLevel1.png';
 import collisionsLevel1 from './data/collisions.js'
+import playerSprite from './assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png'
+import playerAnimations from './data/playerAnimations.jsx'
 //import level2 from './assets/level/Starter_Level.png';
 
 function App() {
@@ -49,8 +51,15 @@ function App() {
         <canvas ref={canvasRef} />
       </div> */}
       <Canvas style={{ position: 'absolute', zIndex: '-1' }} />
-      <Sprite imageSrc={level1} position={{ x: 0, y: 0 }} style={{ position: 'absolute', zIndex: '1' }} />
-      <Player collisionBlocks={collisionBlocksData} position={{ x: 200, y: 300 }} style={{ position: 'absolute', zIndex: '2' }} />
+      <Sprite loop={false} autoplay={false} imageSrc={level1} position={{ x: 0, y: 0 }} style={{ position: 'absolute', zIndex: '1' }} />
+      <Player 
+      //animations={playerAnimations} 
+      imageSrc={playerSprite}
+      frameRate={11}
+      collisionBlocks={collisionBlocksData} 
+      position={{ x: 200, y: 300 }} 
+      style={{ position: 'absolute', zIndex: '2' }} 
+      />
     </div>
   )
 }

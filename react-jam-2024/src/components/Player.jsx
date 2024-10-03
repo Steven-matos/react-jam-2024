@@ -28,11 +28,22 @@ export default function Player(
         preventInput = false,
         direction = 'right',
         jumps = 0,
-        jumpCount = 1,
+        jumpCount = 2,
         collisionBlocks = [],
+        frameRate = 1,
+        animations,
+        frameBuffer = 20,
+        loop = true,
+        autoplay = true,
+        imageSrc
     }
 ) {
     const canvasRef = useRef(null);
+    let image = new Image();
+    let loaded = false;
+    let elapsedFrames = 0;
+    let currentFrame = 0;
+    let currentAnimation;
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -42,14 +53,33 @@ export default function Player(
         canvas.width = 1024;
         canvas.height = 576;
 
+        if (animations) {
+            console.log(animations);
+            for (let key in animations) {
+                image = new Image();
+                image.src = animations[key].imageSrc
+                animations[key].image = image;
+            }
+            console.log('New Animations: ' + animations.idleRight);
+        } else {
+            image.src = imageSrc;
+        }
+
+        image.onload = () => {
+            loaded = true;
+            width = image.width / frameRate;
+            height = image.height;
+            console.log({loaded: loaded, width: image.width / 11, height: image.width})
+        }
+
         //Hitbox Dimensions
         let hitbox = {
             position: {
-                x: position.x,
+                x: position.x - 10,
                 y: position.y
             },
-            width: 40,
-            height: 53
+            width: 32,
+            height: 32
         }
 
         const keys = {
@@ -73,7 +103,7 @@ export default function Player(
                 switch (event.key) {
                     case 'w':
                         if (jumps < jumpCount) {
-                            velocity.y = -2.0;
+                            velocity.y = -2.25;
                             jumps++;
                         }
                         break
@@ -126,11 +156,12 @@ export default function Player(
             } else if (keys.a.pressed) {
                 //switchSprite('runLeft');
                 velocity.x = -1.0;
-                //direction = 'left';
+                direction = 'left';
             } else if (keys.d.pressed) {
+                //switchSprite('idleRight');
                 //switchSprite('runRight');
                 velocity.x = 1.0;
-                //direction = 'right';
+                direction = 'right';
             }
             //else if (direction === 'right' && velocity.x == 0) {
             //switchSprite('idleRight');
@@ -153,8 +184,84 @@ export default function Player(
             context.clearRect(0, 0, canvas.width, canvas.height);
 
             // Draw the sprite (a 100x100 box)
-            context.fillStyle = color;
-            context.fillRect(position.x, position.y, width, height);
+            // context.fillStyle = color;
+            // context.fillRect(position.x, position.y, width, height);
+
+            draw();
+        }
+
+        function switchSprite(name) {
+            if (image === animations[name].image) {
+                return
+            }
+            currentFrame = 0;
+            image = animations[name].image;
+            frameRate = animations[name].frameRate;
+            frameBuffer = animations[name].frameBuffer;
+            loop = animations[name].loop;
+            currentAnimation = animations[name];
+        }
+
+        function draw() {
+            const cropBox = {
+                position: {
+                    x: width * currentFrame,
+                    y: 0,
+                },
+                width: width,
+                height: height
+            }
+
+            if (animations && loaded) {
+                context.drawImage(
+                    image,
+                    cropBox.position.x,
+                    cropBox.position.y,
+                    cropBox.width,
+                    cropBox.height,
+                    position.x,
+                    position.y,
+                    width,
+                    height
+                )
+            } else if (loaded) {
+                context.drawImage(
+                    image,
+                    cropBox.position.x,
+                    cropBox.position.y,
+                    cropBox.width,
+                    cropBox.height,
+                    position.x,
+                    position.y,
+                    width,
+                    height
+                )
+            }
+
+
+            updateFrames();
+        }
+
+        function updateFrames() {
+            if (!autoplay) {
+                return
+            }
+            elapsedFrames++;
+            if (elapsedFrames % frameBuffer === 0) {
+                if (currentFrame < frameRate - 1) {
+                    currentFrame++;
+                } else if (loop) {
+                    currentFrame = 0;
+                }
+            }
+            if (currentAnimation?.onComplete) {
+                if (currentFrame === frameRate - 1 && !currentAnimation.isActive) {
+                    currentAnimation.onComplete();
+                    currentAnimation.isActive = true;
+                }
+
+            }
+
         }
 
         function checkForHorizontalCollisions() {
@@ -195,11 +302,11 @@ export default function Player(
         function updateHitbox() {
             hitbox = {
                 position: {
-                    x: position.x,
-                    y: position.y
+                    x: position.x + 19,
+                    y: position.y + 17
                 },
-                width: 40,
-                height: 53
+                width: 28,
+                height: 28
             }
         }
 
@@ -234,8 +341,6 @@ export default function Player(
             }
         }
 
-
-
         function update() {
             position.x += velocity.x;
 
@@ -249,9 +354,27 @@ export default function Player(
         }
 
         animate();
-
-
-    }, [position, width, height, color, style, sides, velocity, gravity, preventInput, direction, jumps, jumpCount, collisionBlocks]); // Re-render when props change
+    }, [
+        position,
+        width,
+        height,
+        color,
+        style,
+        sides,
+        velocity,
+        gravity,
+        preventInput,
+        direction,
+        jumps,
+        jumpCount,
+        collisionBlocks,
+        frameRate,
+        animations,
+        frameBuffer,
+        loop,
+        autoplay,
+        imageSrc
+    ]); // Re-render when props change
 
     return (
         <div style={style}>
