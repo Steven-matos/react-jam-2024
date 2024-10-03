@@ -3,7 +3,8 @@ import Canvas from './components/Canvas.jsx'
 import Player from './components/Player.jsx';
 import Sprite from './components/Sprite.jsx';
 import level1 from './assets/background/backgroundLevel1.png';
-import collisionsLevel1 from './data/collisions.js'
+import collisionsLevel1 from './data/collisions.js';
+import Trap from './components/Trap.jsx';
 //import level2 from './assets/level/Starter_Level.png';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
       <Canvas style={{ position: 'absolute', zIndex: '-1' }} />
       <Sprite imageSrc={level1} position={{ x: 0, y: 0 }} style={{ position: 'absolute', zIndex: '1' }} />
       <Player collisionBlocks={collisionBlocksData} position={{ x: 200, y: 300 }} style={{ position: 'absolute', zIndex: '2' }} />
+      <Trap position={{ x: 525, y: 360 }} style={{ position: 'absolute', zIndex: '2' }} />
     </div>
   )
 }
