@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "tile/Starter_Level.tmx",
+    "activeFile": "D:/Coding/react-jam-2024/react-jam-2024/src/assets/level/Level_2.tmx",
     "expandedProjectPaths": [
     ],
     "exportAsImage.includeBackgroundColor": true,
@@ -53,6 +53,26 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/level/Level_2.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 524.6666666666666,
+                "y": 271
+            }
+        },
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/resized_sprite_sheet.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/sharpened_sprite_32x32.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/sprite_sheet.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Decorations (32x32).tsx": {
             "scaleInDock": 2
         },
@@ -97,11 +117,14 @@
             "scaleInDock": 1
         },
         "tile/Starter_Level.tmx": {
-            "scale": 0.8197048611111111,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 512.3795404002965,
-                "y": 461.7515620036006
+                "x": 448,
+                "y": 500.3333333333333
             }
         },
         "tile/Terrain (32x32).tsx": {
@@ -115,9 +138,25 @@
         },
         "tile/door.tsx": {
             "scaleInDock": 1
+        },
+        "tile/shrunk_spike_16x16.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile/shrunk_spike_32X32.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile/small_metal_spike_01.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile/spikes_2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
-    "last.externalTilesetPath": "D:/Coding/react-jam-2024/react-jam-2024/src/assets/map",
+    "last.externalTilesetPath": "D:/Coding/react-jam-2024/react-jam-2024/src/assets/map/tile",
     "last.imagePath": "D:/Coding/react-jam-2024/react-jam-2024/src/assets",
     "map.height": 18,
     "map.lastUsedFormat": "tmx",
@@ -125,22 +164,23 @@
     "map.tileWidth": 32,
     "map.width": 32,
     "openFiles": [
-        "tile/Starter_Level.tmx"
+        "tile/Starter_Level.tmx",
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/level/Level_2.tmx"
     ],
     "project": "Starter_Level.tiled-project",
     "recentFiles": [
         "tile/Starter_Level.tmx",
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/level/Level_2.tmx",
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/sprite_sheet.tsx",
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/sharpened_sprite_32x32.tsx",
+        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/resized_sprite_sheet.tsx",
+        "tile/spikes_2.tsx",
+        "tile/shrunk_spike_32X32.tsx",
+        "tile/small_metal_spike_01.tsx",
+        "tile/shrunk_spike_16x16.tsx",
         "Starter_Level.tmx",
         "door.tsx",
-        "box.tsx",
-        "collision.tsx",
-        "Idle.tsx",
-        "D:/Coding/react-jam-2024/react-jam-2024/src/assets/Idle.tsx",
-        "Torch.tsx",
-        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 3.tmx",
-        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 2.tmx",
-        "Terrain (64x64).tsx",
-        "C:/Users/Admin/Downloads/tiled-20240929T062932Z-001/tiled/maps/Level 1.tmx"
+        "box.tsx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
