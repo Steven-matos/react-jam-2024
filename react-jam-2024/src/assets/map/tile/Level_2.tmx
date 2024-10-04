@@ -80,7 +80,7 @@
   <object id="8" gid="298" x="725.909" y="529.455" width="22" height="16"/>
   <object id="9" gid="298" x="745" y="529.455" width="22" height="16"/>
  </objectgroup>
- <layer id="4" name="floor collision" width="32" height="18" opacity="0.2">
+ <layer id="4" name="floor collision" width="32" height="18" visible="0" opacity="0.2">
   <data encoding="csv">
 0,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,0,0,0,0,0,0,0,0,
 294,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,294,0,0,0,0,0,0,0,
@@ -102,7 +102,7 @@
 0,294,294,294,294,0,0,0,0,0,0,0,0,0,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,294,0
 </data>
  </layer>
- <layer id="5" name="platform collision" width="32" height="18" opacity="0.2">
+ <layer id="5" name="platform collision" width="32" height="18" visible="0" opacity="0.2">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
