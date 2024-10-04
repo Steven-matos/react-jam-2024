@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 export default function Player(
     {
@@ -47,9 +47,9 @@ export default function Player(
 
     image.src = imageSrc;
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
 
         // Set canvas dimensions
         canvas.width = 1024;
@@ -81,18 +81,17 @@ export default function Player(
             height: 32
         }
 
-        const keys = {
-            w: {
-                pressed: false
-            },
-            a: {
-                pressed: false
-            },
-            d: {
-                pressed: false
-            },
-
-        }
+    const keys = {
+      w: {
+        pressed: false,
+      },
+      a: {
+        pressed: false,
+      },
+      d: {
+        pressed: false,
+      },
+    };
 
         function handleInput() {
             window.addEventListener('keydown', (event) => {
@@ -116,34 +115,34 @@ export default function Player(
                     //     for (let i = 0; i < doors.length; i++) {
                     //         const door = doors[i];
 
-                    //         if (player.hitbox.position.x + player.hitbox.width <= door.position.x + door.width &&
-                    //             player.hitbox.position.x >= door.position.x &&
-                    //             player.hitbox.position.y + player.hitbox.height >= door.position.y &&
-                    //             player.hitbox.position.y <= door.position.y + door.height &&
-                    //             !door.locked
-                    //         ) {
-                    //             player.velocity.x = 0;
-                    //             player.velocity.y = 0;
-                    //             player.preventInput = true;
-                    //             player.switchSprite('enterDoor');
-                    //             door.play();
-                    //             return
-                    //         }
-                    //     }
-                    //     break
-                }
-            })
+          //         if (player.hitbox.position.x + player.hitbox.width <= door.position.x + door.width &&
+          //             player.hitbox.position.x >= door.position.x &&
+          //             player.hitbox.position.y + player.hitbox.height >= door.position.y &&
+          //             player.hitbox.position.y <= door.position.y + door.height &&
+          //             !door.locked
+          //         ) {
+          //             player.velocity.x = 0;
+          //             player.velocity.y = 0;
+          //             player.preventInput = true;
+          //             player.switchSprite('enterDoor');
+          //             door.play();
+          //             return
+          //         }
+          //     }
+          //     break
+        }
+      });
 
-            window.addEventListener('keyup', (event) => {
-                switch (event.key) {
-                    case 'a':
-                        keys.a.pressed = false;
-                        break
-                    case 'd':
-                        keys.d.pressed = false;
-                        break
-                }
-            })
+      window.addEventListener("keyup", (event) => {
+        switch (event.key) {
+          case "a":
+            keys.a.pressed = false;
+            break;
+          case "d":
+            keys.d.pressed = false;
+            break;
+        }
+      });
 
             if (keys.d.pressed && keys.a.pressed) {
                 velocity.x = 0;
@@ -168,18 +167,18 @@ export default function Player(
             }
         }
 
-        function animate() {
-            window.requestAnimationFrame(animate);
-            velocity.x = 0;
+    function animate() {
+      window.requestAnimationFrame(animate);
+      velocity.x = 0;
 
-            render();
-            handleInput(keys);
-            update();
-        }
+      render();
+      handleInput(keys);
+      update();
+    }
 
-        function render() {
-            // Clear the canvas before redrawing
-            context.clearRect(0, 0, canvas.width, canvas.height);
+    function render() {
+      // Clear the canvas before redrawing
+      context.clearRect(0, 0, canvas.width, canvas.height);
 
             // Draw the sprite (a 100x100 box)
             // context.fillStyle = color;
@@ -251,40 +250,42 @@ export default function Player(
 
         }
 
-        function checkForHorizontalCollisions() {
-            for (let i = 0; i < collisionBlocks.length; i++) {
-                const collisionBlock = collisionBlocks[i];
+    function checkForHorizontalCollisions() {
+      for (let i = 0; i < collisionBlocks.length; i++) {
+        const collisionBlock = collisionBlocks[i];
 
-                //If a collision exists
-                if (
-                    hitbox.position.x <= collisionBlock.position.x + collisionBlock.width &&
-                    hitbox.position.x + hitbox.width >= collisionBlock.position.x &&
-                    hitbox.position.y + hitbox.height >= collisionBlock.position.y &&
-                    hitbox.position.y <= collisionBlock.position.y + collisionBlock.height
-                ) {
-                    //Collision on x axis going to the left
-                    if (velocity.x < 0) {
-                        const offset = hitbox.position.x - position.x;
-                        position.x = collisionBlock.position.x + collisionBlock.width - offset + 0.01;
-                        jumps--;
-                        break
-                    }
+        //If a collision exists
+        if (
+          hitbox.position.x <=
+            collisionBlock.position.x + collisionBlock.width &&
+          hitbox.position.x + hitbox.width >= collisionBlock.position.x &&
+          hitbox.position.y + hitbox.height >= collisionBlock.position.y &&
+          hitbox.position.y <= collisionBlock.position.y + collisionBlock.height
+        ) {
+          //Collision on x axis going to the left
+          if (velocity.x < 0) {
+            const offset = hitbox.position.x - position.x;
+            position.x =
+              collisionBlock.position.x + collisionBlock.width - offset + 0.01;
+            jumps--;
+            break;
+          }
 
-                    //Collision on x axis going to the right
-                    if (velocity.x > 0) {
-                        const offset = hitbox.position.x - position.x + hitbox.width;
-                        position.x = collisionBlock.position.x - offset - 0.01;
-                        jumps--;
-                        break
-                    }
-                }
-            }
+          //Collision on x axis going to the right
+          if (velocity.x > 0) {
+            const offset = hitbox.position.x - position.x + hitbox.width;
+            position.x = collisionBlock.position.x - offset - 0.01;
+            jumps--;
+            break;
+          }
         }
+      }
+    }
 
-        function applyGravity() {
-            velocity.y += gravity;
-            position.y += velocity.y;
-        }
+    function applyGravity() {
+      velocity.y += gravity;
+      position.y += velocity.y;
+    }
 
         function updateHitbox() {
             hitbox = {
@@ -297,24 +298,26 @@ export default function Player(
             }
         }
 
-        function checkforVerticalCollisions() {
-            for (let i = 0; i < collisionBlocks.length; i++) {
-                const collisionBlock = collisionBlocks[i];
+    function checkforVerticalCollisions() {
+      for (let i = 0; i < collisionBlocks.length; i++) {
+        const collisionBlock = collisionBlocks[i];
 
-                //If a collision exists
-                if (
-                    hitbox.position.x <= collisionBlock.position.x + collisionBlock.width &&
-                    hitbox.position.x + hitbox.width >= collisionBlock.position.x &&
-                    hitbox.position.y + hitbox.height >= collisionBlock.position.y &&
-                    hitbox.position.y <= collisionBlock.position.y + collisionBlock.height
-                ) {
-                    //Collision on y axis going up
-                    if (velocity.y < 0) {
-                        velocity.y = 0;
-                        const offset = hitbox.position.y - position.y;
-                        position.y = collisionBlock.position.y + collisionBlock.height - offset + 0.01;
-                        break
-                    }
+        //If a collision exists
+        if (
+          hitbox.position.x <=
+            collisionBlock.position.x + collisionBlock.width &&
+          hitbox.position.x + hitbox.width >= collisionBlock.position.x &&
+          hitbox.position.y + hitbox.height >= collisionBlock.position.y &&
+          hitbox.position.y <= collisionBlock.position.y + collisionBlock.height
+        ) {
+          //Collision on y axis going up
+          if (velocity.y < 0) {
+            velocity.y = 0;
+            const offset = hitbox.position.y - position.y;
+            position.y =
+              collisionBlock.position.y + collisionBlock.height - offset + 0.01;
+            break;
+          }
 
                     //Collision on y axis going down
                     if (velocity.y > 0) {
@@ -331,14 +334,19 @@ export default function Player(
         function update() {
             position.x += velocity.x;
 
-            updateHitbox();
-            context.fillStyle = 'rgba(0, 255, 0, .5)';
-            context.fillRect(hitbox.position.x, hitbox.position.y, hitbox.width, hitbox.height)
-            checkForHorizontalCollisions();
-            applyGravity();
-            updateHitbox();
-            checkforVerticalCollisions();
-        }
+      updateHitbox();
+      context.fillStyle = "rgba(0, 255, 0, .5)";
+      context.fillRect(
+        hitbox.position.x,
+        hitbox.position.y,
+        hitbox.width,
+        hitbox.height
+      );
+      checkForHorizontalCollisions();
+      applyGravity();
+      updateHitbox();
+      checkforVerticalCollisions();
+    }
 
         animate();
     }, [
@@ -363,9 +371,9 @@ export default function Player(
         imageSrc
     ]); // Re-render when props change
 
-    return (
-        <div style={style}>
-            <canvas ref={canvasRef} />
-        </div>
-    );
-};
+  return (
+    <div style={style}>
+      <canvas ref={canvasRef} />
+    </div>
+  );
+}
