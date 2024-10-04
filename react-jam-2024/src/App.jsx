@@ -6,7 +6,6 @@ import level1 from './assets/background/backgroundLevel1.png';
 import collisionsLevel1 from './data/collisions.js'
 import playerSprite from './assets/Kings and Pigs/Sprites/01-King Human/idleRight.png'
 import playerAnimations from './data/playerAnimations.jsx'
-import collisionsLevel1 from './data/collisions.js';
 import Trap from './components/Trap.jsx';
 //import level2 from './assets/level/Starter_Level.png';
 
