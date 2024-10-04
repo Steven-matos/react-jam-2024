@@ -1,27 +1,33 @@
 const animations = {
     idleRight: {
         frameRate: 11,
-        frameBuffer: 6,
+        frameBuffer: 20,
         loop: true,
-        imageSrc: '../assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png',
+        imageSrc: '/src/assets/Kings and Pigs/Sprites/01-King Human/idleRight.png',
     },
     idleLeft: {
         frameRate: 11,
-        frameBuffer: 6,
+        frameBuffer: 20,
         loop: true,
-        imageSrc: './img/king/idleLeft.png',
+        imageSrc: '/src/assets/Kings and Pigs/Sprites/01-King Human/idleLeft.png',
     },
     runRight: {
         frameRate: 8,
-        frameBuffer: 12,
+        frameBuffer: 20,
         loop: true,
-        imageSrc: './img/king/runRight.png',
+        imageSrc: '/src/assets/Kings and Pigs/Sprites/01-King Human/runRight.png',
     },
     runLeft: {
         frameRate: 8,
-        frameBuffer: 12,
+        frameBuffer: 20,
         loop: true,
-        imageSrc: './img/king/runLeft.png',
+        imageSrc: '/src/assets/Kings and Pigs/Sprites/01-King Human/runLeft.png',
+    },
+    jumpRight: {
+        frameRate: 2,
+        frameBuffer: 20,
+        loop: true,
+        imageSrc: '/src/assets/Kings and Pigs/Sprites/01-King Human/jumpRight.png'
     }
 }
 

@@ -35,15 +35,17 @@ export default function Player(
         frameBuffer = 20,
         loop = true,
         autoplay = true,
-        imageSrc
+        imageSrc,
+        image = new Image()
     }
 ) {
     const canvasRef = useRef(null);
-    let image = new Image();
     let loaded = false;
     let elapsedFrames = 0;
     let currentFrame = 0;
     let currentAnimation;
+
+    image.src = imageSrc;
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -54,22 +56,19 @@ export default function Player(
         canvas.height = 576;
 
         if (animations) {
-            console.log(animations);
+            console.log(animations)
             for (let key in animations) {
-                image = new Image();
+                const image = new Image();
                 image.src = animations[key].imageSrc
                 animations[key].image = image;
             }
-            console.log('New Animations: ' + animations.idleRight);
-        } else {
-            image.src = imageSrc;
         }
 
         image.onload = () => {
             loaded = true;
             width = image.width / frameRate;
             height = image.height;
-            console.log({loaded: loaded, width: image.width / 11, height: image.width})
+            console.log({ loaded: loaded, width: image.width / 11, height: image.width })
         }
 
         //Hitbox Dimensions
@@ -148,26 +147,25 @@ export default function Player(
 
             if (keys.d.pressed && keys.a.pressed) {
                 velocity.x = 0;
-                // if (direction === 'right') {
-                //     switchSprite('idleRight');
-                // } else {
-                //     switchSprite('idleLeft');
-                // } 
+                if (direction === 'right') {
+                    switchSprite('idleRight');
+                } else {
+                    image.src = animations.idleLeft.imageSrc
+                    switchSprite('idleLeft');
+                }
             } else if (keys.a.pressed) {
-                //switchSprite('runLeft');
+                switchSprite('runLeft');
                 velocity.x = -1.0;
                 direction = 'left';
             } else if (keys.d.pressed) {
-                //switchSprite('idleRight');
-                //switchSprite('runRight');
+                switchSprite('runRight');
                 velocity.x = 1.0;
                 direction = 'right';
+            } else if (direction === 'right' && velocity.x == 0) {
+                switchSprite('idleRight');
+            } else {
+                switchSprite('idleLeft');
             }
-            //else if (direction === 'right' && velocity.x == 0) {
-            //switchSprite('idleRight');
-            //} else {
-            //switchSprite('idleLeft');
-            //}
         }
 
         function animate() {
@@ -194,8 +192,9 @@ export default function Player(
             if (image === animations[name].image) {
                 return
             }
+            image = animations[name].image
+            image.src = animations[name].imageSrc;
             currentFrame = 0;
-            image = animations[name].image;
             frameRate = animations[name].frameRate;
             frameBuffer = animations[name].frameBuffer;
             loop = animations[name].loop;
@@ -212,19 +211,7 @@ export default function Player(
                 height: height
             }
 
-            if (animations && loaded) {
-                context.drawImage(
-                    image,
-                    cropBox.position.x,
-                    cropBox.position.y,
-                    cropBox.width,
-                    cropBox.height,
-                    position.x,
-                    position.y,
-                    width,
-                    height
-                )
-            } else if (loaded) {
+            if (loaded) {
                 context.drawImage(
                     image,
                     cropBox.position.x,
